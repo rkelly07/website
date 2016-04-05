@@ -57,7 +57,7 @@ div.profile_pg
 
 span.name
 {
-  background-color: rgba(7, 7, 7, 0.75);
+  background-color: #ffffff;
   font-size:25px;
   font-weight:bold;
   padding-right:5px;
@@ -159,10 +159,15 @@ select.year_select
 /* entire container, keeps perspective */
 .flip-container {
   perspective: 1000;
+  trabsfirn-style: preserve-3d;
 }
-  /* flip the pane when hovered */
-  .flip-container:hover .flipper, .flip-container.hover .flipper {
-    transform: rotateY(180deg);
+
+  /*  UPDATED! flip the pane when hovered */
+  .flip-container:hover .back {
+    transform: rotateY(0deg);
+  }
+  .flip-container:hover .front {
+      transform: rotateY(180deg);
   }
 
 .flip-container, .front, .back {
@@ -180,8 +185,10 @@ select.year_select
 
 /* hide back of pane during swap */
 .front, .back {
-  backface-visibility: hidden;
-
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  transition: 0.6s;
+  transform-style: preserve-3d;
   position: absolute;
   top: 0;
   left: 0;
@@ -190,8 +197,7 @@ select.year_select
 /* front pane, placed above back */
 .front {
   z-index: 2;
-  /* for firefox 31 */
-  transform: rotateY(0deg);
+  /* for firefox 31 */  transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
